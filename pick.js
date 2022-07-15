@@ -44,6 +44,13 @@ function draw()
     selecter.displayTargets();
 
     segment.display();
+
+    fill(255);
+    stroke(0);
+    rect(0, 0, 130, 50);
+    fill(0);
+    textSize(24);
+    text("full screen", 10, 30);
 }
 
 
@@ -56,6 +63,12 @@ function mouseMoved()
 function mousePressed() 
 {
     selecter.selectBestTarget();
+
+    if (0<mouseX && mouseX<130 && 0<mouseY && mouseY<50)
+    {
+        let fs = fullscreen();
+        fullscreen(!fs);
+    }
 } 
 
 
