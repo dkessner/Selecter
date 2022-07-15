@@ -85,3 +85,5 @@ class Segment
 
 
 
+document.addEventListener('onmousedown', event => event.preventDefault());
+
