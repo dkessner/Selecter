@@ -53,8 +53,10 @@ function mouseMoved()
 }
 
 
-
-// function mousePressed() {} 
+function mousePressed() 
+{
+    selecter.selectBestTarget();
+} 
 
 
 function mouseDragged()
@@ -84,8 +86,9 @@ class Segment
 }
 
 
-
+/*
 document.addEventListener('mousedown', event => event.preventDefault());
 document.addEventListener('mousemove', event => event.preventDefault());
 document.addEventListener('mouseup', event => event.preventDefault());
+*/
 
