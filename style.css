@@ -3,13 +3,13 @@ body {
     background-color: #111;
 }
 
-/*
+/* disable browser touch handling */
+
 html,
 body {
   user-select: none;
   touch-action: none;
   -webkit-user-select: none;
 }
-*/
 
 

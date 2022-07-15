@@ -9,7 +9,7 @@ let segment;
 
 function setup()
 {
-    createCanvas(400, 400);
+    createCanvas(600, 600);
 
     selecter = new Selecter();
 
@@ -36,7 +36,7 @@ function draw()
     background(0);
 
     // constraint circle
-    stroke(128);
+    stroke(128, 128, 0);
     strokeWeight(2);
     noFill();
     ellipse(200, 200, 200, 200);
