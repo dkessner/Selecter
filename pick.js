@@ -10,15 +10,21 @@ let segment;
 function setup()
 {
     createCanvas(600, 600);
+    resizeCanvas(windowWidth, windowHeight);
+    initialize();
+}
 
+
+function initialize()
+{
     selecter = new Selecter();
 
     for (let i=0; i<5; i++)
-        selecter.targets.push(new Target(random(0, width), random(0, height)));
+        selecter.targets.push(new Target(random(100, width-100), random(100, height-100)));
 
     for (let i=0; i<5; i++)
     {   
-        let t = new Target(random(0, width), random(0, height));
+        let t = new Target(random(100, width-100), random(100, height-100));
         t.colorFill = t.colorFillSelected = color(0, 0, 128);
         t.constrain = () => t.constrainCircle(createVector(200, 200), 100);
         t.constrain();
@@ -33,6 +39,15 @@ function setup()
 
 function draw()
 {
+    if (width !== windowWidth || height !== windowHeight)
+    {
+        // full screen hack:  fullscreen() seems to be async,
+        // with windowWidth/Height not set immediately;
+        // this forces a canvas resize and re-initialization
+        resizeCanvas(windowWidth, windowHeight);
+        initialize();
+    }
+
     background(0);
 
     // constraint circle
@@ -64,6 +79,8 @@ function mousePressed()
 {
     selecter.selectBestTarget();
 
+    // full screen button pressed
+
     if (0<mouseX && mouseX<130 && 0<mouseY && mouseY<50)
     {
         let fs = fullscreen();
@@ -77,7 +94,9 @@ function mouseDragged()
     selecter.dragSelectedTarget();
 }
 
-// function mouseReleased() {}
+function mouseReleased() 
+{
+}
 
 
 

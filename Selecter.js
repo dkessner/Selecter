@@ -49,7 +49,7 @@ class Selecter
 
 class Target
 {
-    constructor(x, y, radius = 25) 
+    constructor(x, y, radius = 50) 
     {
         this.position = createVector(x, y);
         this.radius = radius;
