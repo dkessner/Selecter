@@ -5,7 +5,11 @@
 
 let selecter;
 let segment;
+
 let cat;
+let catPosition;
+let catPositionPrevious;
+let catVelocity;
 
 
 function preload()
@@ -39,6 +43,7 @@ function initialize()
     }
 
     segment = new Segment(selecter.targets[0], selecter.targets[5]);
+    catPosition = selecter.targets[1].position;
 }
 
 
@@ -69,11 +74,22 @@ function draw()
     textSize(24);
     text("full screen", 10, 30);
 
-    let position = selecter.targets[1].position;
-    image(cat, position.x-39, position.y+25);
+    image(cat, catPosition.x-39, catPosition.y+25);
 
     selecter.displayTargets();
     segment.display();
+
+    if (catVelocity)
+    {
+        catPosition.add(catVelocity);
+        catVelocity.mult(.9);
+
+        // wrap
+        if (catPosition.x<0) catPosition.x+=width;
+        if (catPosition.x>width) catPosition.x-=width;
+        if (catPosition.y<0) catPosition.y+=height;
+        if (catPosition.y>height) catPosition.y-=height;
+    }
 }
 
 
@@ -94,16 +110,26 @@ function mousePressed()
         let fs = fullscreen();
         fullscreen(!fs);
     }
+
+    catPositionPrevious = catPosition.copy();
 } 
 
 
 function mouseDragged()
 {
     selecter.dragSelectedTarget();
+
 }
 
 function mouseReleased() 
 {
+    catVelocity = catPosition.copy();
+    catVelocity.sub(catPositionPrevious);
+    catVelocity.mult(10);
+    if (catVelocity.mag() > 30)
+        catVelocity.setMag(30);
+
+    console.log(catVelocity);
 }
 
 
