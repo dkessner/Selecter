@@ -53,9 +53,7 @@ class Target
     {
         this.position = createVector(x, y);
         this.radius = radius;
-        this.colorFill = color(128);
-        this.colorStroke = color(100);
-        this.colorFillSelected = color(128);
+        this.colorStroke = color(150, 150, 0);
         this.colorStrokeSelected = color(0, 255, 0);
     }
 
@@ -63,8 +61,7 @@ class Target
     {
         stroke(isSelected ? this.colorStrokeSelected : this.colorStroke);
         strokeWeight(isSelected ? 4 : 2);
-        fill(isSelected ? this.colorFillSelected : this.colorFill);
-
+        noFill(); 
         ellipse(this.position.x, this.position.y, this.radius, this.radius);
     }
 

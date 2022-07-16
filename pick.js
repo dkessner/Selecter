@@ -5,6 +5,13 @@
 
 let selecter;
 let segment;
+let cat;
+
+
+function preload()
+{
+    cat = loadImage("cat.png");
+}
 
 
 function setup()
@@ -12,6 +19,7 @@ function setup()
     createCanvas(600, 600);
     resizeCanvas(windowWidth, windowHeight);
     initialize();
+    cat.resize(100, 100);
 }
 
 
@@ -25,15 +33,12 @@ function initialize()
     for (let i=0; i<5; i++)
     {   
         let t = new Target(random(100, width-100), random(100, height-100));
-        t.colorFill = t.colorFillSelected = color(0, 0, 0, 0);
         t.constrain = () => t.constrainCircle(createVector(200, 200), 100);
         t.constrain();
         selecter.targets.push(t);
     }
 
     segment = new Segment(selecter.targets[0], selecter.targets[5]);
-    selecter.targets[0].colorFill = color(255, 0, 0);
-    selecter.targets[5].colorFill = color(0, 0, 255);
 }
 
 
@@ -47,7 +52,7 @@ function windowResized()
 
 function draw()
 {
-    background(0);
+    background(200);
 
     // constraint circle
     stroke(0, 0, 128);
@@ -55,16 +60,20 @@ function draw()
     noFill();
     ellipse(200, 200, 200, 200);
 
-    selecter.displayTargets();
 
-    segment.display();
-
+    // full screen button
     fill(255);
     stroke(0);
     rect(0, 0, 130, 50);
     fill(0);
     textSize(24);
     text("full screen", 10, 30);
+
+    let position = selecter.targets[1].position;
+    image(cat, position.x-39, position.y+25);
+
+    selecter.displayTargets();
+    segment.display();
 }
 
 
