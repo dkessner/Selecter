@@ -85,10 +85,10 @@ function draw()
         catVelocity.mult(.9);
 
         // wrap
-        if (catPosition.x<0) catPosition.x+=width;
-        if (catPosition.x>width) catPosition.x-=width;
-        if (catPosition.y<0) catPosition.y+=height;
-        if (catPosition.y>height) catPosition.y-=height;
+        while (catPosition.x<0) catPosition.x+=width;
+        while (catPosition.x>width) catPosition.x-=width;
+        while (catPosition.y<0) catPosition.y+=height;
+        while (catPosition.y>height) catPosition.y-=height;
     }
 }
 
@@ -119,19 +119,28 @@ function mouseDragged()
 {
     selecter.dragSelectedTarget();
 
+    let d = dist(mouseX, mouseY, pmouseX, pmouseY);
+
+    if (d < 5)
+    {
+        // if user pauses during drag, reset initial position
+        // for velocity calculation
+        catPositionPrevious = catPosition.copy();
+    }
 }
+
 
 function mouseReleased() 
 {
     catVelocity = catPosition.copy();
     catVelocity.sub(catPositionPrevious);
+    if (catVelocity.mag() < .5)
+        catVelocity.setMag(0);
+
     catVelocity.mult(10);
     if (catVelocity.mag() > 30)
         catVelocity.setMag(30);
-
-    console.log(catVelocity);
 }
-
 
 
 class Segment
