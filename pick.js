@@ -37,21 +37,20 @@ function initialize()
 }
 
 
+function windowResized()
+{
+    // mobile
+    resizeCanvas(windowWidth, windowHeight);
+    initialize();
+}
+
+
 function draw()
 {
-    if (width !== windowWidth || height !== windowHeight)
-    {
-        // full screen hack:  fullscreen() seems to be async,
-        // with windowWidth/Height not set immediately;
-        // this forces a canvas resize and re-initialization
-        resizeCanvas(windowWidth, windowHeight);
-        initialize();
-    }
-
     background(0);
 
     // constraint circle
-    stroke(128, 128, 0);
+    stroke(0, 0, 128);
     strokeWeight(2);
     noFill();
     ellipse(200, 200, 200, 200);
