@@ -111,7 +111,10 @@ function mousePressed()
         fullscreen(!fs);
     }
 
-    catPositionPrevious = catPosition.copy();
+    if (selecter.selectedTarget === selecter.targets[1])
+    {
+        catPositionPrevious = catPosition.copy();
+    }
 } 
 
 
@@ -119,27 +122,33 @@ function mouseDragged()
 {
     selecter.dragSelectedTarget();
 
-    let d = dist(mouseX, mouseY, pmouseX, pmouseY);
-
-    if (d < 5)
+    if (selecter.selectedTarget === selecter.targets[1])
     {
-        // if user pauses during drag, reset initial position
-        // for velocity calculation
-        catPositionPrevious = catPosition.copy();
+        let d = dist(mouseX, mouseY, pmouseX, pmouseY);
+
+        if (d < 5)
+        {
+            // if user pauses during drag, reset initial position
+            // for velocity calculation
+            catPositionPrevious = catPosition.copy();
+        }
     }
 }
 
 
 function mouseReleased() 
 {
-    catVelocity = catPosition.copy();
-    catVelocity.sub(catPositionPrevious);
-    if (catVelocity.mag() < .5)
-        catVelocity.setMag(0);
+    if (selecter.selectedTarget === selecter.targets[1])
+    {
+        catVelocity = catPosition.copy();
+        catVelocity.sub(catPositionPrevious);
+        if (catVelocity.mag() < .5)
+            catVelocity.setMag(0);
 
-    catVelocity.mult(10);
-    if (catVelocity.mag() > 30)
-        catVelocity.setMag(30);
+        catVelocity.mult(10);
+        if (catVelocity.mag() > 30)
+            catVelocity.setMag(30);
+    }
 }
 
 
