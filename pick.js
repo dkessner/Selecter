@@ -25,7 +25,7 @@ function initialize()
     for (let i=0; i<5; i++)
     {   
         let t = new Target(random(100, width-100), random(100, height-100));
-        t.colorFill = t.colorFillSelected = color(0, 0, 128);
+        t.colorFill = t.colorFillSelected = color(0, 0, 0, 0);
         t.constrain = () => t.constrainCircle(createVector(200, 200), 100);
         t.constrain();
         selecter.targets.push(t);

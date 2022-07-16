@@ -54,15 +54,15 @@ class Target
         this.position = createVector(x, y);
         this.radius = radius;
         this.colorFill = color(128);
-        this.colorStroke = this.colorFill;
-        this.colorFillSelected = this.colorFill;
+        this.colorStroke = color(100);
+        this.colorFillSelected = color(128);
         this.colorStrokeSelected = color(0, 255, 0);
     }
 
     display(isSelected) 
     {
         stroke(isSelected ? this.colorStrokeSelected : this.colorStroke);
-        strokeWeight(isSelected ? 3 : 0);
+        strokeWeight(isSelected ? 4 : 2);
         fill(isSelected ? this.colorFillSelected : this.colorFill);
 
         ellipse(this.position.x, this.position.y, this.radius, this.radius);
