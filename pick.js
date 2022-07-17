@@ -20,8 +20,7 @@ function preload()
 
 function setup()
 {
-    createCanvas(600, 600);
-    resizeCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight);
     initialize();
     cat.resize(100, 100);
 }
